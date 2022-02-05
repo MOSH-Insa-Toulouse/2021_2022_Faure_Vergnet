@@ -1,0 +1,241 @@
+[
+    {
+        "id": "a8ef05104f13fa40",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "4656d1f9cdf4c829",
+        "type": "mqtt in",
+        "z": "a8ef05104f13fa40",
+        "name": "",
+        "topic": "#",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "fd65c177b38d2bed",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 240,
+        "y": 160,
+        "wires": [
+            [
+                "f3747d67a09a3fdc"
+            ]
+        ]
+    },
+    {
+        "id": "277e53ddd6113079",
+        "type": "debug",
+        "z": "a8ef05104f13fa40",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 570,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "f3747d67a09a3fdc",
+        "type": "json",
+        "z": "a8ef05104f13fa40",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 370,
+        "y": 160,
+        "wires": [
+            [
+                "277e53ddd6113079",
+                "c4b454bd128e9777"
+            ]
+        ]
+    },
+    {
+        "id": "c4b454bd128e9777",
+        "type": "function",
+        "z": "a8ef05104f13fa40",
+        "name": "getPayload",
+        "func": "msg.payload = msg.payload[\"uplink_message\"][\"decoded_payload\"]\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 550,
+        "y": 200,
+        "wires": [
+            [
+                "2f5a2a72a28e08bd",
+                "7f3e5ec967cfd40f"
+            ]
+        ]
+    },
+    {
+        "id": "6f177f23b1d57b12",
+        "type": "debug",
+        "z": "a8ef05104f13fa40",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 930,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "2f5a2a72a28e08bd",
+        "type": "function",
+        "z": "a8ef05104f13fa40",
+        "name": "getGazLevel",
+        "func": "let rt = msg.payload[\"rt\"]\nif (rt != null)\n    msg.payload = rt\n    return msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 730,
+        "y": 220,
+        "wires": [
+            [
+                "6f177f23b1d57b12",
+                "b2a3000c0a14850d"
+            ]
+        ]
+    },
+    {
+        "id": "7f3e5ec967cfd40f",
+        "type": "function",
+        "z": "a8ef05104f13fa40",
+        "name": "getAlert",
+        "func": "msg.payload = msg.payload[\"rt\"] == null\n    \nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 720,
+        "y": 280,
+        "wires": [
+            [
+                "6f177f23b1d57b12",
+                "2955520805fb5e27"
+            ]
+        ]
+    },
+    {
+        "id": "b2a3000c0a14850d",
+        "type": "ui_chart",
+        "z": "a8ef05104f13fa40",
+        "name": "",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "label": "chart",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1F77B4",
+            "#AEC7E8",
+            "#FF7F0E",
+            "#2CA02C",
+            "#98DF8A",
+            "#D62728",
+            "#FF9896",
+            "#9467BD",
+            "#C5B0D5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 920,
+        "y": 160,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "2955520805fb5e27",
+        "type": "ui_switch",
+        "z": "a8ef05104f13fa40",
+        "name": "",
+        "label": "switch",
+        "tooltip": "",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": true,
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": false,
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 860,
+        "y": 340,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "fd65c177b38d2bed",
+        "type": "mqtt-broker",
+        "name": "TTN",
+        "broker": "eu1.cloud.thethings.network",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "sessionExpiry": ""
+    }
+]

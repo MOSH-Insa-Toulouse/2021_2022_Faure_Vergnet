@@ -1,0 +1,17 @@
+EESchema-LIBRARY Version 2.4
+#encoding utf-8
+#
+# Mon_Capteur_Gaz
+#
+DEF Mon_Capteur_Gaz U 0 40 Y Y 1 F N
+F0 "U" 100 600 50 H V C CNN
+F1 "Mon_Capteur_Gaz" 100 600 50 H V C CNN
+F2 "" 100 600 50 H I C CNN
+F3 "" 100 600 50 H I C CNN
+DRAW
+S -500 500 500 -500 0 1 0 f
+X Heater 1 500 350 100 R 50 50 1 1 I
+ENDDRAW
+ENDDEF
+#
+#End Library
