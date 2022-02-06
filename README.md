@@ -2,7 +2,7 @@
 
 **Paul Faure (IR), Arnaud Vergnet (IR)**
 
-This repo contains the source files and some documentation on our mini project about creating a LoRa gas Sensor based on nano-particles.
+This repo contains the source files and some documentation on our mini project about creating a LoRa gas sensor based on nano-particles.
 
 ## Table of Contents
 
@@ -26,7 +26,7 @@ This repository contains several folders for each type of work.
 
 The source code used for this project is available in the [arduino](arduino/) folder.
 
-We followed the green and blue tracks, skipped the red track due to a lack of skills in energy harvesting, and did the black track.
+We followed every track, from green to black. We will not go into details on how we solved each track, but will present on overview of our final solution.
 
 ### How the project works
 
@@ -36,6 +36,13 @@ We made the arduino source code modular by adding variables at the top to contro
 
 Our mini-project is able to retrieve gas sensor values. It sends periodically those values using The Things Network (TTN). If a value goes over a cerain threshold, an alarm is triggered (buzzer). The state of the alarm is also sent over TTN. To reduce power consumption, it uses hardware interupts to wake up at specific intervals and read new values.
 
+There a four LEDs indicating different states:
+- The red LED will turn on when gas is detected, while the buzzer is buzzing
+- The blue LED turns on when the arduino is connected to TTN
+- The green LED turns on when the device is reading sensor data
+- THe yellow LED turns on when the device is setup, indicating it is ready to read sensor data
+
+Sadly, we did not take any picture of the finished product.
 
 ### Node-Red Dashboard
 
